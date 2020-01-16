@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.setTitle(R.string.txtlogina);
 
         txtErabiltzaile=(EditText)findViewById(R.id.editTextUser);
         txtPasahitza=(EditText)findViewById(R.id.editTextPass);
