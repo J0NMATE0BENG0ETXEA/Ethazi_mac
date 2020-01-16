@@ -2,4 +2,6 @@
     <string name="app_name">Ethazi_mac</string>
     <string name="txtlogina">Logina</string>
     <string name="btnSartu">Sartu</string>
+    <string name="txterabiltzailesartu">Sartu erabiltzaile bat</string>
+    <string name="txtsartupasahitza">Sartu pasahitza</string>
 </resources>
