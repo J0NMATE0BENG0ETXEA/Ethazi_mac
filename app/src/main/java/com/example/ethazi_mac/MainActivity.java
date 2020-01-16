@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 if(!response.isEmpty()){
                     //Intent
                     Toast.makeText(MainActivity.this, "Bien login", Toast.LENGTH_SHORT).show();
+                    pantallaOstatuak();
                 }
                 else {
                     //Toast error login
@@ -76,5 +77,10 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+    public void pantallaOstatuak() {
+        Intent i = new Intent(this, ostatuak.class );
+        startActivity(i);
+        finish();
+    }
 
 }
