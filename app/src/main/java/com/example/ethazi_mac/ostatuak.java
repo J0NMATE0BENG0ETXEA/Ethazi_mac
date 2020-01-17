@@ -7,18 +7,29 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.util.ArrayList;
 
 public class ostatuak extends AppCompatActivity {
 
-    private ListView lista;
-    private ArrayList<Integer> codigos = new ArrayList<Integer>();
+    private ListView listView;
+    private ArrayList<String> codigos = new ArrayList<String>();
     private ArrayList<String> nombres = new ArrayList<String>();
 
     @Override
@@ -29,15 +40,83 @@ public class ostatuak extends AppCompatActivity {
         //BD CARGAR
 
         //LISTVIEW
-        lista=(ListView)findViewById(R.id.listview);
-        ArrayAdapter adapter = new ArrayAdapter (this,android.R.layout.simple_list_item_1, nombres);
-        lista.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        listView=(ListView)findViewById(R.id.listview);
+        EnviarRecibirDatos("http://192.168.13.26/ethazi_mac/selectostatuak.php");
+       // ArrayAdapter adapter = new ArrayAdapter (this,android.R.layout.simple_list_item_1, nombres);
+       /* lista.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
             public void onItemClick(AdapterView adapter, View view, int a, long l) {
                 //verTarea(adapter,view,a,l);
                 //System.out.println(lista.getItemAtPosition(i)+" : "+ codigos.get(i).toString());
             }
-        });
+        });*/
     }
+
+
+    public void CargarListView(JSONArray ja){
+
+        ArrayList<String> lista = new ArrayList<>();
+
+        //CODIGO LISTA
+        for(int i=0;i<ja.length();i+=10){
+
+            try {
+                codigos.add(ja.getString(i));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        for(int i=0;i<ja.length();i+=10){
+
+            try {
+
+                lista.add(ja.getString(i+1));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, lista);
+        listView.setAdapter(adaptador);
+
+    }
+
+    public void EnviarRecibirDatos(String URL){
+
+        Toast.makeText(getApplicationContext(), ""+URL, Toast.LENGTH_SHORT).show();
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                response = response.replace("][",",");
+                if (response.length()>0){
+                    try {
+                        JSONArray ja = new JSONArray(response);
+                        Log.i("sizejson",""+ja.length());
+                        CargarListView(ja);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+            }
+        }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        queue.add(stringRequest);
+
+    }
+
 }
