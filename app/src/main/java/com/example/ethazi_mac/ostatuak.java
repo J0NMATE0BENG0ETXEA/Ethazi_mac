@@ -72,8 +72,6 @@ public class ostatuak extends AppCompatActivity {
 
     public void EnviarRecibirDatos(String URL){
 
-        Toast.makeText(getApplicationContext(), ""+URL, Toast.LENGTH_SHORT).show();
-
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
