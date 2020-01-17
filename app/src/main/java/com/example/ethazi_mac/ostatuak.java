@@ -56,7 +56,7 @@ public class ostatuak extends AppCompatActivity {
 
     public void CargarListView(JSONArray ja){
 
-        ArrayList<String> lista = new ArrayList<>();
+        ArrayList<Ostatu> lista = new ArrayList<>();
 
         //CODIGO LISTA
         for(int i=0;i<ja.length();i+=10){
@@ -72,8 +72,9 @@ public class ostatuak extends AppCompatActivity {
         for(int i=0;i<ja.length();i+=10){
 
             try {
-
-                lista.add(ja.getString(i+1));
+                Ostatu ost = new Ostatu(ja.getString(i+1),ja.getString(i+3),ja.getString(i+6),ja.getString(i+7));
+                //lista.add(ja.getString(i+1));
+                lista.add(ost);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -81,7 +82,7 @@ public class ostatuak extends AppCompatActivity {
         }
 
 
-        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, lista);
+        ArrayAdapter<Ostatu> adaptador = new ArrayAdapter<Ostatu>(this, android.R.layout.simple_list_item_1, lista);
         listView.setAdapter(adaptador);
 
     }
