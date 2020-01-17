@@ -5,4 +5,8 @@
     <string name="txterabiltzailesartu">Sartu erabiltzaile bat</string>
     <string name="txtsartupasahitza">Sartu pasahitza</string>
     <string name="txtostatuakpantalla">Ostatuak</string>
+    <string name="txtCampings">Campings</string>
+    <string name="txtAgroturismos">Agroturismos</string>
+    <string name="txtCasasRurales">Casas Rurales</string>
+    <string name="txtAlbergues">Albergues</string>
 </resources>

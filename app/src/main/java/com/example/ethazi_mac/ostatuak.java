@@ -8,6 +8,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -37,20 +39,10 @@ public class ostatuak extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ostatuak);
         this.setTitle(R.string.txtostatuakpantalla);
-        //BD CARGAR
 
         //LISTVIEW
         listView=(ListView)findViewById(R.id.listview);
         EnviarRecibirDatos("http://192.168.13.26/ethazi_mac/selectostatuak.php");
-       // ArrayAdapter adapter = new ArrayAdapter (this,android.R.layout.simple_list_item_1, nombres);
-       /* lista.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            @Override
-            public void onItemClick(AdapterView adapter, View view, int a, long l) {
-                //verTarea(adapter,view,a,l);
-                //System.out.println(lista.getItemAtPosition(i)+" : "+ codigos.get(i).toString());
-            }
-        });*/
     }
 
 
@@ -110,5 +102,30 @@ public class ostatuak extends AppCompatActivity {
         queue.add(stringRequest);
 
     }
+
+    //ACTIONBAR
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id==R.id.albergues) {
+            EnviarRecibirDatos("http://192.168.13.26/ethazi_mac/selectalberge.php");
+        }
+        if (id==R.id.agroturismos) {
+            EnviarRecibirDatos("http://192.168.13.26/ethazi_mac/selectagro.php");
+        }
+        if (id==R.id.campings) {
+            EnviarRecibirDatos("http://192.168.13.26/ethazi_mac/selectcamping.php");
+        }
+        if (id==R.id.casasrurales) {
+            EnviarRecibirDatos("http://192.168.13.26/ethazi_mac/selectcasasru.php");
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
 }
