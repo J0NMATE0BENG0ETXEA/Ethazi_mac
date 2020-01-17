@@ -58,21 +58,12 @@ public class ostatuak extends AppCompatActivity {
 
         ArrayList<Ostatu> lista = new ArrayList<>();
 
-        //CODIGO LISTA
+        //KOLTSULTAREN EMAITZAK OBJEKTUETAN SARTU
         for(int i=0;i<ja.length();i+=10){
 
             try {
-                codigos.add(ja.getString(i));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-        for(int i=0;i<ja.length();i+=10){
-
-            try {
-                Ostatu ost = new Ostatu(ja.getString(i+1),ja.getString(i+3),ja.getString(i+6),ja.getString(i+7));
+                Ostatu ost = new Ostatu(ja.getString(i),ja.getString(i+1),ja.getString(i+2),ja.getString(i+3),ja.getString(i+4),ja.getString(i+5),
+                        ja.getString(i+6),ja.getString(i+7),ja.getString(i+8),ja.getString(i+9));
                 //lista.add(ja.getString(i+1));
                 lista.add(ost);
             } catch (JSONException e) {

@@ -2,16 +2,28 @@ package com.example.ethazi_mac;
 
 public class Ostatu {
 
+    private String kodea;
     private String izena;
+    private String deskrip;
     private String Ostmota;
+    private String logelaKop;
+    private String kokapena;
     private String telefonoa;
     private String email;
+    private String latitudea;
+    private String longitudea;
 
-    public Ostatu(String izena, String ostmota, String telefonoa, String email) {
+    public Ostatu(String kodea, String izena, String deskrip, String ostmota, String logelaKop, String kokapena, String telefonoa, String email, String latitudea, String longitudea) {
+        this.kodea = kodea;
         this.izena = izena;
-        this.Ostmota = ostmota;
+        this.deskrip = deskrip;
+        Ostmota = ostmota;
+        this.logelaKop = logelaKop;
+        this.kokapena = kokapena;
         this.telefonoa = telefonoa;
         this.email = email;
+        this.latitudea = latitudea;
+        this.longitudea = longitudea;
     }
 
     public String getIzena() {
