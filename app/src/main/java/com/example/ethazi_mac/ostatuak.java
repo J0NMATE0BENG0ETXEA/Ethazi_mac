@@ -144,6 +144,7 @@ public class ostatuak extends AppCompatActivity {
         Intent i = new Intent(this, InfoPantalla.class );
         i.putExtra("kod", ostaua.getKodea());
         i.putExtra("izena", ostaua.getIzena());
+        i.putExtra("desk", ostaua.getDeskrip());
         startActivity(i);
 
     }
