@@ -145,6 +145,13 @@ public class ostatuak extends AppCompatActivity {
         i.putExtra("kod", ostaua.getKodea());
         i.putExtra("izena", ostaua.getIzena());
         i.putExtra("desk", ostaua.getDeskrip());
+        i.putExtra("mota", ostaua.getOstmota());
+        i.putExtra("logelakop", ostaua.getLogelaKop());
+        i.putExtra("kokapena", ostaua.getKokapena());
+        i.putExtra("telefono", ostaua.getTelefonoa());
+        i.putExtra("email", ostaua.getEmail());
+        i.putExtra("latitude", ostaua.getLatitudea());
+        i.putExtra("longitude", ostaua.getLongitudea());
         startActivity(i);
 
     }
