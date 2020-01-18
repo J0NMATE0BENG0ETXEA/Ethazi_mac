@@ -4,9 +4,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,7 +44,7 @@ public class ostatuak extends AppCompatActivity {
 
         //LISTVIEW
         listView=(ListView)findViewById(R.id.listview);
-        EnviarRecibirDatos("http://192.168.13.26/ethazi_mac/selectostatuak.php");
+        EnviarRecibirDatos("http://192.168.1.10/ethazi_mac/selectostatuak.php");
     }
 
 
@@ -66,6 +68,17 @@ public class ostatuak extends AppCompatActivity {
 
 
         ArrayAdapter<Ostatu> adaptador = new ArrayAdapter<Ostatu>(this, android.R.layout.simple_list_item_1, lista);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView adapter, View view, int i, long l) {
+                //Ikusi Ostatuaren informazio guztia
+                System.out.println(listView.getItemAtPosition(i)+" : ");
+                //Ikusi ostatua
+                Ostatu ostatu = (Ostatu) listView.getItemAtPosition(i);
+                ikusiOstatua(ostatu, view);
+            }
+        });
         listView.setAdapter(adaptador);
 
     }
@@ -125,5 +138,14 @@ public class ostatuak extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    //VER TAREA
+    public void ikusiOstatua(Ostatu ostaua, View view){
+        Intent i = new Intent(this, InfoPantalla.class );
+        i.putExtra("kod", ostaua.getKodea());
+        i.putExtra("izena", ostaua.getIzena());
+        startActivity(i);
+
+    }
 
 }

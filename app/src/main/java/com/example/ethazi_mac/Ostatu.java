@@ -26,6 +26,14 @@ public class Ostatu {
         this.longitudea = longitudea;
     }
 
+    public String getKodea() {
+        return kodea;
+    }
+
+    public void setKodea(String kodea) {
+        this.kodea = kodea;
+    }
+
     public String getIzena() {
         return izena;
     }
@@ -34,12 +42,36 @@ public class Ostatu {
         this.izena = izena;
     }
 
+    public String getDeskrip() {
+        return deskrip;
+    }
+
+    public void setDeskrip(String deskrip) {
+        this.deskrip = deskrip;
+    }
+
     public String getOstmota() {
         return Ostmota;
     }
 
     public void setOstmota(String ostmota) {
         Ostmota = ostmota;
+    }
+
+    public String getLogelaKop() {
+        return logelaKop;
+    }
+
+    public void setLogelaKop(String logelaKop) {
+        this.logelaKop = logelaKop;
+    }
+
+    public String getKokapena() {
+        return kokapena;
+    }
+
+    public void setKokapena(String kokapena) {
+        this.kokapena = kokapena;
     }
 
     public String getTelefonoa() {
@@ -56,6 +88,22 @@ public class Ostatu {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getLatitudea() {
+        return latitudea;
+    }
+
+    public void setLatitudea(String latitudea) {
+        this.latitudea = latitudea;
+    }
+
+    public String getLongitudea() {
+        return longitudea;
+    }
+
+    public void setLongitudea(String longitudea) {
+        this.longitudea = longitudea;
     }
 
     @Override
