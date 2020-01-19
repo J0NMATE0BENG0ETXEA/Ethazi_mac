@@ -10,4 +10,6 @@
     <string name="txtCasasRurales">Casas Rurales</string>
     <string name="txtAlbergues">Albergues</string>
     <string name="txtlogKop">Logela kopuru</string>
+    <string name="btnMapaikusi">Mapan ikusi</string>
+    <string name="btnReserba">Reserba egin</string>
 </resources>
