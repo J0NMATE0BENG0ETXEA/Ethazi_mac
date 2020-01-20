@@ -16,4 +16,5 @@
     <string name="txtemail">Sartu mail bat</string>
     <string name="txttelefono">Sartu telefono bat</string>
     <string name="txtizenabizen">Sartu izena eta abizena</string>
+    <string name="errorHutsik">Bete behar duzu</string>
 </resources>
