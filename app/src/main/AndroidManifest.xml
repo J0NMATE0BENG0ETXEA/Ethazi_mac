@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mapa"></activity>
+        <activity android:name=".Erregistratu"></activity>
+        <activity android:name=".mapa" />
         <activity android:name=".InfoPantalla" />
         <activity android:name=".ostatuak" />
         <activity android:name=".MainActivity">

@@ -12,4 +12,8 @@
     <string name="txtlogKop">Logela kopuru</string>
     <string name="btnMapaikusi">Mapan ikusi</string>
     <string name="btnReserba">Reserba egin</string>
+    <string name="txtopcional">Optzionala</string>
+    <string name="txtemail">Sartu mail bat</string>
+    <string name="txttelefono">Sartu telefono bat</string>
+    <string name="txtizenabizen">Sartu izena eta abizena</string>
 </resources>

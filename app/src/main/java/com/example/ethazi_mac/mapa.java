@@ -64,7 +64,7 @@ public class mapa extends AppCompatActivity {
 
                 CameraPosition position = new CameraPosition.Builder()
                         .target(new LatLng(lati, longi)) // Cogemos de la BD las coordenadas del alojamiento que se ha escogido
-                        .zoom(17) // Fija el nivel de zoom
+                        .zoom(15) // Fija el nivel de zoom
                         .tilt(30) // Fija la inclinación de la cámara
                         .build();
                 mapboxMap.animateCamera(CameraUpdateFactory

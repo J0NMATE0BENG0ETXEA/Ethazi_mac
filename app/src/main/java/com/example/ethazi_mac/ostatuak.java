@@ -44,7 +44,7 @@ public class ostatuak extends AppCompatActivity {
 
         //LISTVIEW
         listView=(ListView)findViewById(R.id.listview);
-        EnviarRecibirDatos("http://192.168.1.10/ethazi_mac/selectostatuak.php");
+        EnviarRecibirDatos("http://192.168.13.26/ethazi_mac/selectostatuak.php");
     }
 
 

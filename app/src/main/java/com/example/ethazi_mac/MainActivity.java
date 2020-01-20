@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         btnSartu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                validarUsuario("http://192.168.1.10/ethazi_mac/validar_usuario.php");
+                validarUsuario("http://192.168.13.26/ethazi_mac/validar_usuario.php");
             }
         });
 
