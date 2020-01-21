@@ -2,7 +2,9 @@ package com.example.ethazi_mac;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -50,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
                 KontuBerriBat(v);
             }
         });
+
+        SharedPreferences prefe=getSharedPreferences("datos", Context.MODE_PRIVATE);
+
     }
 
     public void validarUsuario(String URL){
@@ -59,6 +64,12 @@ public class MainActivity extends AppCompatActivity {
                 if(!response.isEmpty()){
                     //Intent
                     Toast.makeText(MainActivity.this, "Bien login", Toast.LENGTH_SHORT).show();
+                    //SHARED
+                    SharedPreferences preferencias=getSharedPreferences("datos",Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor=preferencias.edit();
+                    editor.putString("usuario", txtErabiltzaile.getText().toString());
+                    editor.commit();
+
                     pantallaOstatuak();
                 }
                 else {

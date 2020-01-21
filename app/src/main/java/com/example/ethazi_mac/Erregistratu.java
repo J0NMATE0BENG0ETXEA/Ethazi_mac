@@ -53,7 +53,7 @@ public class Erregistratu extends AppCompatActivity {
             }
         });
 
-        kontsultaId("http://192.168.13.26/ethazi_mac/count_usuarios.php");
+        //kontsultaId("http://192.168.13.26/ethazi_mac/count_usuarios.php");
     }
 
 
@@ -80,7 +80,7 @@ public class Erregistratu extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros=new HashMap<String, String>();
-                //parametros.put("id_erabiltzaile", id);
+                parametros.put("pasahitza", txtpasahitza1.getText().toString());
                 parametros.put("erabiltzaile", txterabiltzaile.getText().toString());
                 parametros.put("mail", txtmail.getText().toString());
                 parametros.put("telefonoa", txttelefono.getText().toString());
@@ -166,7 +166,7 @@ public class Erregistratu extends AppCompatActivity {
                     }
                     else{
                         if (pasahitza1.compareTo(pasahitza2) == 0){
-                            insertarDatos("http://192.168.13.26/ethazi_mac/insertar_usuario.php");
+                            insertarDatos("http://192.168.13.26/ethazi_mac/usuario_insertarprueba.php");
                             finish();
                         }
                         else {
