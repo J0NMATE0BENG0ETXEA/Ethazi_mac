@@ -53,7 +53,6 @@ public class InfoPantalla extends AppCompatActivity {
         i.putExtra("izen", izena);
         i.putExtra("deskrip", desk);
         startActivity(i);
-
     }
 
 }

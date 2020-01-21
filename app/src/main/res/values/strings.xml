@@ -12,9 +12,13 @@
     <string name="txtlogKop">Logela kopuru</string>
     <string name="btnMapaikusi">Mapan ikusi</string>
     <string name="btnReserba">Reserba egin</string>
+    <string name="btnErregistratu">Erregistratu</string>
     <string name="txtopcional">Optzionala</string>
     <string name="txtemail">Sartu mail bat</string>
     <string name="txttelefono">Sartu telefono bat</string>
     <string name="txtizenabizen">Sartu izena eta abizena</string>
-    <string name="errorHutsik">Bete behar duzu</string>
+    <string name="txtErregistratuda">Erregistratu da</string>
+    <string name="txtKontuaSortuNahi">Kontu bat sortu nahi duzu?</string>
+    <string name="errorPasahitzakBerdin">Pasahitzak ez dira berdinak</string>
+    <string name="errorDatuakBete">Datu guztiak bete behar dira</string>
 </resources>

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -22,6 +23,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    TextView kontuberria;
     EditText txtErabiltzaile, txtPasahitza;
     Button btnSartu;
 
@@ -34,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         txtErabiltzaile=(EditText)findViewById(R.id.editTextUser);
         txtPasahitza=(EditText)findViewById(R.id.editTextPass);
         btnSartu=(Button)findViewById(R.id.buttonSartu);
-
         btnSartu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
@@ -42,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        kontuberria = (TextView) findViewById(R.id.textViewKontua);
+        kontuberria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                KontuBerriBat(v);
+            }
+        });
     }
 
     public void validarUsuario(String URL){
@@ -82,6 +90,11 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, ostatuak.class );
         startActivity(i);
         finish();
+    }
+
+    public void KontuBerriBat(View view) {
+        Intent i = new Intent(this, Erregistratu.class );
+        startActivity(i);
     }
 
 }
