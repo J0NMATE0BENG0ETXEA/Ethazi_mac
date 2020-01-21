@@ -53,11 +53,11 @@ public class ostatuak extends AppCompatActivity {
         ArrayList<Ostatu> lista = new ArrayList<>();
 
         //KOLTSULTAREN EMAITZAK OBJEKTUETAN SARTU
-        for(int i=0;i<ja.length();i+=10){
+        for(int i=0;i<ja.length();i+=11){
 
             try {
                 Ostatu ost = new Ostatu(ja.getString(i),ja.getString(i+1),ja.getString(i+2),ja.getString(i+3),ja.getString(i+4),ja.getString(i+5),
-                        ja.getString(i+6),ja.getString(i+7),ja.getString(i+8),ja.getString(i+9));
+                        ja.getString(i+6),ja.getString(i+7),ja.getString(i+8),ja.getString(i+9),ja.getString(i+10));
                 //lista.add(ja.getString(i+1));
                 lista.add(ost);
             } catch (JSONException e) {
@@ -152,6 +152,7 @@ public class ostatuak extends AppCompatActivity {
         i.putExtra("email", ostaua.getEmail());
         i.putExtra("latitude", ostaua.getLatitudea());
         i.putExtra("longitude", ostaua.getLongitudea());
+        i.putExtra("prezioa", ostaua.getPrezioa());
         startActivity(i);
 
     }

@@ -12,8 +12,9 @@ public class Ostatu {
     private String email;
     private String latitudea;
     private String longitudea;
+    private String prezioa;
 
-    public Ostatu(String kodea, String izena, String deskrip, String ostmota, String logelaKop, String kokapena, String telefonoa, String email, String latitudea, String longitudea) {
+    public Ostatu(String kodea, String izena, String deskrip, String ostmota, String logelaKop, String kokapena, String telefonoa, String email, String latitudea, String longitudea, String prezioa) {
         this.kodea = kodea;
         this.izena = izena;
         this.deskrip = deskrip;
@@ -24,6 +25,7 @@ public class Ostatu {
         this.email = email;
         this.latitudea = latitudea;
         this.longitudea = longitudea;
+        this.prezioa = prezioa;
     }
 
     public String getKodea() {
@@ -106,8 +108,16 @@ public class Ostatu {
         this.longitudea = longitudea;
     }
 
+    public String getPrezioa() {
+        return prezioa;
+    }
+
+    public void setPrezioa(String prezioa) {
+        this.prezioa = prezioa;
+    }
+
     @Override
     public String toString() {
-        return izena + "\n" +  Ostmota + "\n" + telefonoa + "\n" +  email + "\n";
+        return izena + "\n" +  Ostmota + "\n" + prezioa + "€\n" + telefonoa + "\n" +  email + "\n";
     }
 }
