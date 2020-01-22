@@ -85,7 +85,7 @@ public class Erregistratu extends AppCompatActivity {
                 parametros.put("mail", txtmail.getText().toString());
                 parametros.put("telefonoa", txttelefono.getText().toString());
                 parametros.put("Erabiltzaile_mota", mota);
-                parametros.put("IzenAbizenak", txtizenabizen.getText().toString());
+                parametros.put("Izen Abizenak", txtizenabizen.getText().toString());
 
                 return parametros;
             }
@@ -96,7 +96,7 @@ public class Erregistratu extends AppCompatActivity {
     }
 
 
-    public void kontsultaId(String URL){
+    /*public void kontsultaId(String URL){
 
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
@@ -125,7 +125,7 @@ public class Erregistratu extends AppCompatActivity {
 
         queue.add(stringRequest);
 
-    }
+    }*/
 
     public void CargarId(JSONArray ja) {
 
@@ -166,7 +166,7 @@ public class Erregistratu extends AppCompatActivity {
                     }
                     else{
                         if (pasahitza1.compareTo(pasahitza2) == 0){
-                            insertarDatos("http://192.168.13.26/ethazi_mac/usuario_insertarprueba.php");
+                            insertarDatos("http://192.168.13.26/ethazi_mac/insertar_usuario.php");
                             finish();
                         }
                         else {
