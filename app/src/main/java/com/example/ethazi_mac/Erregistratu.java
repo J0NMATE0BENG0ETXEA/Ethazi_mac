@@ -125,7 +125,7 @@ public class Erregistratu extends AppCompatActivity {
 
         queue.add(stringRequest);
 
-    }*/
+    }
 
     public void CargarId(JSONArray ja) {
 
@@ -143,7 +143,7 @@ public class Erregistratu extends AppCompatActivity {
 
         }
 
-    }
+    }*/
 
     public void DatuakOndo(){
                     String izen, pasahitza1, pasahitza2, mail, tele, erabil;

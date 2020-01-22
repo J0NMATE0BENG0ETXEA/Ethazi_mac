@@ -21,4 +21,7 @@
     <string name="txtKontuaSortuNahi">Kontu bat sortu nahi duzu?</string>
     <string name="errorPasahitzakBerdin">Pasahitzak ez dira berdinak</string>
     <string name="errorDatuakBete">Datu guztiak bete behar dira</string>
+    <string name="txtHasieraData">Sartu hasiera data</string>
+    <string name="txtAmaieraData">Sartu amaiera data</string>
+    <string name="txtGaukop">Sartu gau kopurua</string>
 </resources>

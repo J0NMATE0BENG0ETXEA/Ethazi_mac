@@ -1,56 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Reserba">
 
-    <TextView
-        android:id="@+id/textViewInformazioa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:gravity="center"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
-    <LinearLayout
-        android:layout_marginTop="48dp"
-        android:background="#FFF"
-        android:layout_marginLeft="44dp"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
+        <TextView
+            android:id="@+id/textViewInformazioa"
+            android:layout_width="179dp"
+            android:layout_height="67dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="21dp"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="33dp"
+            android:gravity="center"
+            android:textSize="18dp" />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/buttonReserbaCalendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/calenAmaiera"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="146dp"
+            android:layout_marginRight="146dp"
+            android:onClick="datuakGorde"
+            android:text="@string/btnReserba" />
 
-    <CalendarView
-        android:id="@+id/Calendar"
-        android:layout_width="273dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="92dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewInformazioa">
+        <CalendarView
+            android:id="@+id/calenHasiera"
+            android:layout_width="wrap_content"
+            android:layout_height="320dp"
+            android:layout_below="@+id/textViewhasi"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="21dp"
+            android:layout_marginRight="21dp">
 
-    </CalendarView>
+        </CalendarView>
 
-    <Button
-        android:id="@+id/buttonReserbaCalendar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="@string/btnReserba"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Calendar"
-        app:layout_constraintVertical_bias="0.0" />
+        <CalendarView
+            android:id="@+id/calenAmaiera"
+            android:layout_width="wrap_content"
+            android:layout_height="320dp"
+            android:layout_below="@+id/textViewama"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginRight="22dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </CalendarView>
+
+        <EditText
+            android:id="@+id/editTextGaukop"
+            android:layout_width="184dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="21dp"
+            android:layout_marginRight="21dp"
+            android:ems="10"
+            android:hint="@string/txtGaukop"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/textViewhasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewInformazioa"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="120dp"
+            android:layout_marginRight="120dp"
+            android:text="@string/txtHasieraData"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textViewama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/calenHasiera"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="124dp"
+            android:layout_marginRight="124dp"
+            android:text="@string/txtAmaieraData"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+</ScrollView>
