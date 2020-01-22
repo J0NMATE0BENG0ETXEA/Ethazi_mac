@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.CalendarView;
 import android.widget.TextView;
 
 public class Reserba extends AppCompatActivity {
 
     private String erabiltzaile;
     private TextView info;
+    private CalendarView calendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +30,14 @@ public class Reserba extends AppCompatActivity {
         erabiltzaile = prefe.getString("usuario", "").toString();
 
         info=(TextView)findViewById(R.id.textViewInformazioa);
+        calendar=(CalendarView)findViewById(R.id.Calendar);
 
         info.setText(izena+ "\n" + prezioa + "€\n" + "cod: " + erabiltzaile);
+
+
     }
+
+
 
 
 }
