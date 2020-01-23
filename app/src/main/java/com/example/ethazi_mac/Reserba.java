@@ -25,6 +25,9 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.sql.Time;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,6 +46,15 @@ public class Reserba extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reserba);
         this.setTitle(R.string.btnReserba);
+
+        //Calendar datak
+        Calendar calendarNow = new GregorianCalendar();
+        int monthDay =calendarNow.get(Calendar.DAY_OF_MONTH);
+        int month = calendarNow.get(Calendar.MONTH)+1;
+        int year = calendarNow.get(Calendar.YEAR);
+        String fechahoy = (year+"-"+month+"-"+monthDay);
+        dataHasiera = fechahoy;
+        dataAmaiera = fechahoy;
 
         //Beste activity informazioa
         Bundle bundle = getIntent().getExtras();
