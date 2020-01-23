@@ -22,6 +22,9 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -80,7 +83,7 @@ public class Erregistratu extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros=new HashMap<String, String>();
-                parametros.put("pasahitza", txtpasahitza1.getText().toString());
+                parametros.put("pasahitza", getMd5(txtpasahitza1.getText().toString()));
                 parametros.put("erabiltzaile", txterabiltzaile.getText().toString());
                 parametros.put("mail", txtmail.getText().toString());
                 parametros.put("telefonoa", txttelefono.getText().toString());
@@ -95,55 +98,6 @@ public class Erregistratu extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-
-    /*public void kontsultaId(String URL){
-
-        RequestQueue queue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-                response = response.replace("][",",");
-                if (response.length()>0){
-                    try {
-                        JSONArray ja = new JSONArray(response);
-                        Log.i("sizejson",""+ja.length());
-                        CargarId(ja);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-
-            }
-        }, new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-
-        queue.add(stringRequest);
-
-    }
-
-    public void CargarId(JSONArray ja) {
-
-        for (int i = 0; i < ja.length(); i ++) {
-
-            try {
-                    id = ja.getString(i);
-                    int aux = Integer.parseInt(id);
-                    aux = aux + 1;
-                    id = String.valueOf(aux);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-    }*/
 
     public void DatuakOndo(){
                     String izen, pasahitza1, pasahitza2, mail, tele, erabil;
@@ -176,4 +130,28 @@ public class Erregistratu extends AppCompatActivity {
                         }
                     }
                 }
+
+    public String getMd5(String input) {
+        try {
+
+            MessageDigest md = MessageDigest.getInstance("MD5");
+
+            byte[] messageDigest = md.digest(input.getBytes());
+
+            BigInteger no = new BigInteger(1, messageDigest);
+
+            // Convert message digest into hex value
+            String hashtext = no.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            return hashtext;
+        }
+
+        // For specifying wrong message digest algorithms
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

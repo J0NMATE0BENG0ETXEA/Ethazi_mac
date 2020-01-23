@@ -26,6 +26,9 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -100,8 +103,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros=new HashMap<String, String>();
+                System.out.println("MD5: " + getMd5(txtPasahitza.getText().toString()));
+                String oier = getMd5(txtPasahitza.getText().toString());
                 parametros.put("usuario", txtErabiltzaile.getText().toString());
-                parametros.put("password", txtPasahitza.getText().toString());
+                parametros.put("password", oier);
                 return parametros;
             }
         };
@@ -166,6 +171,30 @@ public class MainActivity extends AppCompatActivity {
 
         queue.add(stringRequest);
 
+    }
+
+    //ENCRIPTAR
+    public String getMd5(String input) {
+        try {
+
+            MessageDigest md = MessageDigest.getInstance("MD5");
+
+            byte[] messageDigest = md.digest(input.getBytes());
+
+            BigInteger no = new BigInteger(1, messageDigest);
+
+            // Convert message digest into hex value
+            String hashtext = no.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            return hashtext;
+        }
+
+        // For specifying wrong message digest algorithms
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
