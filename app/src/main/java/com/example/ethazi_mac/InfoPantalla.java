@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class InfoPantalla extends AppCompatActivity {
 
     private Ostatu ostatu;
-    private String latidude, longitude, izena, desk, prezioa;
+    private String latidude, longitude, izena, desk, prezioa, idOstatu;
     private TextView tvizena, tvdesk, tvmota, tvkokapena, tvtelefonoa, tvemail;
     private Button btnMapa, btnReserva;
 
@@ -44,6 +44,7 @@ public class InfoPantalla extends AppCompatActivity {
         latidude = (String) bundle.get("latitude");
         longitude = (String) bundle.get("longitude");
         prezioa = (String) bundle.get("prezioa");
+        idOstatu = (String) bundle.get("kod");
     }
 
     //VER MAPA
@@ -60,6 +61,7 @@ public class InfoPantalla extends AppCompatActivity {
         Intent i = new Intent(this, Reserba.class );
         i.putExtra("izen", izena);
         i.putExtra("prezioa", prezioa);
+        i.putExtra("Kod", idOstatu);
         startActivity(i);
     }
 }

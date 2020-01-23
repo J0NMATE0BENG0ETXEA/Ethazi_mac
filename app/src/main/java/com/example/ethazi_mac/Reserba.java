@@ -28,9 +28,11 @@ import org.json.JSONException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.String.valueOf;
+
 public class Reserba extends AppCompatActivity {
 
-    private String erabiltzaile, dataHasiera, dataAmaiera, idErabiltzaile;
+    private String erabiltzaile, dataHasiera, dataAmaiera, idErabiltzaile, idost, prezioaguzti;
     private TextView info;
     private CalendarView Hasiera, Amaiera;
     private Button btnreserba;
@@ -45,11 +47,13 @@ public class Reserba extends AppCompatActivity {
         //Beste activity informazioa
         Bundle bundle = getIntent().getExtras();
         String izena = (String) bundle.get("izen");
-        String prezioa = (String) bundle.get("prezioa");
+        prezioaguzti = (String) bundle.get("prezioa");
+        idost = (String) bundle.get("Kod");
 
         //SHRED
         SharedPreferences prefe=getSharedPreferences("datos", Context.MODE_PRIVATE);
         erabiltzaile = prefe.getString("usuario", "").toString();
+        idErabiltzaile = prefe.getString("id_usuario", "").toString();
 
         info=(TextView)findViewById(R.id.textViewInformazioa);
         Hasiera=(CalendarView)findViewById(R.id.calenHasiera);
@@ -57,7 +61,7 @@ public class Reserba extends AppCompatActivity {
         gaukop =(EditText)findViewById(R.id.editTextGaukop);
         btnreserba = (Button)findViewById(R.id.buttonReserbaCalendar);
 
-        info.setText(izena+ "\n" + prezioa + "€\n" + "cod: " + erabiltzaile);
+        info.setText(izena+ "\n" + prezioaguzti + "€\n" + "cod: " + idErabiltzaile + "\n" + erabiltzaile);
 
         Hasiera.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -77,62 +81,48 @@ public class Reserba extends AppCompatActivity {
     }
 
     public void datuakGorde(View view){
-        String gaukopuru = gaukop.getText().toString();
-        kontsultaIderabiltzaile("http://192.168.13.26/ethazi_mac/id_usuario.php");
+        String gaukopuru;
+        if (gaukop.getText().toString().compareTo("") ==0){
+            gaukopuru = valueOf(1);
+        }
+        else{
+            gaukopuru = gaukop.getText().toString();
+        }
+        int aux = Integer.parseInt(gaukopuru);
+        int emaitza = (Integer.parseInt(prezioaguzti)*aux);
+        prezioaguzti = String.valueOf(emaitza);
+
+        insertarDatos("http://192.168.13.26/ethazi_mac/insertar_reserba.php");
+        finish();
     }
 
-
-        public void kontsultaIderabiltzaile(String URL){
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
+    public void insertarDatos(String URL){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                response = response.replace("][",",");
-                if (response.length()>0){
-                    try {
-                        JSONArray ja = new JSONArray(response);
-                        Log.i("sizejson",""+ja.length());
-                        CargarId(ja);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-
             }
-        }, new Response.ErrorListener(){
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                //TOAST capturar error
+                Toast.makeText(Reserba.this, error.toString(), Toast.LENGTH_SHORT).show();
             }
         } ) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros=new HashMap<String, String>();
-                parametros.put("Erabiltzaile", erabiltzaile);
+                parametros.put("id_Ostatu", idost);
+                parametros.put("id_Erabiltzaile", idErabiltzaile);
+                parametros.put("PrezioaGuztira", prezioaguzti);
+                parametros.put("Hasiera_data", dataHasiera);
+                parametros.put("Amaiera_data", dataAmaiera);
                 return parametros;
             }
         };
 
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
-            requestQueue.add(stringRequest);
-
-    }
-
-    public void CargarId(JSONArray ja) {
-
-        for (int i = 0; i < ja.length(); i ++) {
-
-            try {
-                idErabiltzaile = ja.getString(i);
-                System.out.println("Coidgo erabiltzaile: " + idErabiltzaile);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        }
-
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
 

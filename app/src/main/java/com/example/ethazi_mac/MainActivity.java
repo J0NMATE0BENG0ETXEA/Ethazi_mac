@@ -6,7 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,6 +23,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     TextView kontuberria;
     EditText txtErabiltzaile, txtPasahitza;
     Button btnSartu;
+    String usuario, id;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
         btnSartu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
+                usuario = txtErabiltzaile.getText().toString();
+                //Kontsulta
+                kontsultaErabiltzaileId("http://192.168.13.26/ethazi_mac/id_usuario.php");
                 validarUsuario("http://192.168.13.26/ethazi_mac/validar_usuario.php");
             }
         });
@@ -67,7 +79,8 @@ public class MainActivity extends AppCompatActivity {
                     //SHARED
                     SharedPreferences preferencias=getSharedPreferences("datos",Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor=preferencias.edit();
-                    editor.putString("usuario", txtErabiltzaile.getText().toString());
+                    editor.putString("usuario", usuario);
+                    editor.putString("id_usuario", id);
                     editor.commit();
 
                     pantallaOstatuak();
@@ -106,6 +119,53 @@ public class MainActivity extends AppCompatActivity {
     public void KontuBerriBat(View view) {
         Intent i = new Intent(this, Erregistratu.class );
         startActivity(i);
+    }
+
+    public void GordeId(JSONArray ja){
+
+        //KOLTSULTAREN EMAITZAK OBJEKTUETAN SARTU
+        for(int i=0;i<ja.length();i+=2){
+
+            try {
+                if (ja.getString(i+1).compareTo(usuario) == 0){
+                    id = ja.getString(i);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    public void kontsultaErabiltzaileId(String URL){
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                response = response.replace("][",",");
+                if (response.length()>0){
+                    try {
+                        JSONArray ja = new JSONArray(response);
+                        Log.i("sizejson",""+ja.length());
+                        GordeId(ja);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+            }
+        }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        queue.add(stringRequest);
+
     }
 
 }
