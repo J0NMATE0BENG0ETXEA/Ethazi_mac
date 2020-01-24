@@ -204,7 +204,6 @@ public class MainActivity extends AppCompatActivity {
                             SharedPreferences.Editor editor=preferencias.edit();
                             editor.putString("usuario", usuario);
                             editor.putString("id_usuario", id);
-                            Toast.makeText(MainActivity.this, id, Toast.LENGTH_SHORT).show();
                             editor.commit();
 
                             pantallaOstatuak();
