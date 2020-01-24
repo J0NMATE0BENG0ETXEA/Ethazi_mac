@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,11 +28,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+
+import static java.nio.charset.StandardCharsets.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     EditText txtErabiltzaile, txtPasahitza;
     Button btnSartu;
     String usuario, id;
+    private boolean jarraitu = false;
 
 
     @Override
@@ -56,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 usuario = txtErabiltzaile.getText().toString();
                 //Kontsulta
                 kontsultaErabiltzaileId("http://192.168.13.26/ethazi_mac/id_usuario.php");
-                validarUsuario("http://192.168.13.26/ethazi_mac/validar_usuario.php");
+                comprobarUsuario("http://192.168.13.26/ethazi_mac/validar_usuario.php");
             }
         });
 
@@ -72,49 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void validarUsuario(String URL){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                if(!response.isEmpty()){
-                    //Intent
-                    Toast.makeText(MainActivity.this, "Bien login", Toast.LENGTH_SHORT).show();
-                    //SHARED
-                    SharedPreferences preferencias=getSharedPreferences("datos",Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor=preferencias.edit();
-                    editor.putString("usuario", usuario);
-                    editor.putString("id_usuario", id);
-                    editor.commit();
-
-                    pantallaOstatuak();
-                }
-                else {
-                    //Toast error login
-                    Toast.makeText(MainActivity.this, "Mal login", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                //TOAST capturar error
-                Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        } ) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> parametros=new HashMap<String, String>();
-                System.out.println("MD5: " + getMd5(txtPasahitza.getText().toString()));
-                String oier = getMd5(txtPasahitza.getText().toString());
-                parametros.put("usuario", txtErabiltzaile.getText().toString());
-                parametros.put("password", oier);
-                return parametros;
-            }
-        };
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-    }
-
+    //PANTALLAK
     public void pantallaOstatuak() {
         Intent i = new Intent(this, ostatuak.class );
         startActivity(i);
@@ -126,13 +94,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    //KONTSULTA ERABILTZAILE
     public void GordeId(JSONArray ja){
 
         //KOLTSULTAREN EMAITZAK OBJEKTUETAN SARTU
         for(int i=0;i<ja.length();i+=2){
 
             try {
-                if (ja.getString(i+1).compareTo(usuario) == 0){
+                if (ja.getString(i+1).equals(usuario)){
                     id = ja.getString(i);
                 }
             } catch (JSONException e) {
@@ -195,6 +164,71 @@ public class MainActivity extends AppCompatActivity {
         catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    //COMPROBAR USUARIO
+    public void validarUsuario(JSONArray ja){
+        String pass = getMd5(txtPasahitza.getText().toString());
+        //KOLTSULTAREN EMAITZAK OBJEKTUETAN SARTU
+        for(int i=0;i<ja.length();i+=2){
+            try {
+                if (ja.getString(i).equals(usuario) && ja.getString(i+1).equals(pass)){
+                    jarraitu = true;
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    public void comprobarUsuario(String URL){
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                response = response.replace("][",",");
+                if (response.length()>0){
+                    try {
+                        JSONArray ja = new JSONArray(response);
+                        Log.i("sizejson",""+ja.length());
+                        validarUsuario(ja);
+                        if (jarraitu==true){
+                            //Intent
+                            Toast.makeText(MainActivity.this, "Bien login", Toast.LENGTH_SHORT).show();
+                            //SHARED
+                            SharedPreferences preferencias=getSharedPreferences("datos",Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor=preferencias.edit();
+                            editor.putString("usuario", usuario);
+                            editor.putString("id_usuario", id);
+                            Toast.makeText(MainActivity.this, id, Toast.LENGTH_SHORT).show();
+                            editor.commit();
+
+                            pantallaOstatuak();
+                        }
+                        else {
+                            Toast.makeText(MainActivity.this, "Mal login", Toast.LENGTH_SHORT).show();
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+            }
+        }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        queue.add(stringRequest);
+
     }
 
 }

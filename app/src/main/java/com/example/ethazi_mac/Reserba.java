@@ -27,6 +27,7 @@ import org.json.JSONException;
 
 import java.sql.Time;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -75,6 +76,11 @@ public class Reserba extends AppCompatActivity {
 
         info.setText(izena+ "\n" + prezioaguzti + "€\n" + "cod: " + idErabiltzaile + "\n" + erabiltzaile);
 
+        Date gaur = new Date();
+        //Date d = f.parse(string_date);
+        long milliseconds = gaur.getTime();
+        Hasiera.setMinDate(milliseconds);
+        Amaiera.setMinDate(milliseconds);
         Hasiera.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
