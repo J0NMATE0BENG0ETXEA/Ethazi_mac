@@ -17,7 +17,7 @@ import com.mapbox.mapboxsdk.maps.Style;
 
 public class mapa extends AppCompatActivity {
     private MapView mapaView;
-    private String longitude, latitude, izena, desk;
+    private String longitude, latitude, izena, koka, helbide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +43,10 @@ public class mapa extends AppCompatActivity {
         //Beste activity informazioa
         Bundle bundle = getIntent().getExtras();
         izena = (String) bundle.get("izen");
-        desk = (String) bundle.get("deskrip");
         latitude = (String) bundle.get("lati");
         longitude = (String) bundle.get("longi");
+        koka = (String) bundle.get("koka");
+        helbide = (String) bundle.get("helbide");
 
         //Konbertsioak
         final Double lati, longi;
@@ -60,7 +61,7 @@ public class mapa extends AppCompatActivity {
                         .position(new LatLng(
                                 lati, longi))//Cogemos de la BD las coordenadas del alojamiento que se ha escogido
                         .title(izena)//Cogemos de la BD el nombre del alojamiento que se ha escogido
-                        .snippet(desk));//Cogemos de la BD la descripcion del alojamiento que se ha escogido
+                        .snippet(koka + "\n" + helbide));//Cogemos de la BD la descripcion del alojamiento que se ha escogido
 
                 CameraPosition position = new CameraPosition.Builder()
                         .target(new LatLng(lati, longi)) // Cogemos de la BD las coordenadas del alojamiento que se ha escogido
@@ -117,4 +118,5 @@ public class mapa extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         mapaView.onSaveInstanceState(outState);
     }
+
 }

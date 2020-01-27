@@ -66,7 +66,7 @@
     <TextView
         android:id="@+id/textViewkokapena"
         android:layout_width="wrap_content"
-        android:layout_height="55dp"
+        android:layout_height="89dp"
         android:layout_below="@+id/textViewDesc"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"

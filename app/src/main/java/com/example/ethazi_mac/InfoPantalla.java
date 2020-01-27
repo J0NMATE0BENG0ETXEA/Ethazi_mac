@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class InfoPantalla extends AppCompatActivity {
 
     private Ostatu ostatu;
-    private String latidude, longitude, izena, desk, prezioa, idOstatu;
+    private String latidude, longitude, izena, desk, prezioa, idOstatu, koka, helbide;
     private TextView tvizena, tvdesk, tvmota, tvkokapena, tvtelefonoa, tvemail;
     private Button btnMapa, btnReserva;
 
@@ -38,7 +38,9 @@ public class InfoPantalla extends AppCompatActivity {
         desk = (String) bundle.get("desk");
         tvdesk.setMovementMethod(new ScrollingMovementMethod());
         tvmota.setText((String) bundle.get("mota"));
-        tvkokapena.setText((String) bundle.get("kokapena"));
+        koka = (String) bundle.get("kokapena");
+        helbide = (String) bundle.get("helbidea");
+        tvkokapena.setText((String) bundle.get("kokapena") + "\n" + (String) bundle.get("helbidea"));
         tvtelefonoa.setText((String) bundle.get("telefono"));
         tvemail.setText((String) bundle.get("email"));
         latidude = (String) bundle.get("latitude");
@@ -53,7 +55,8 @@ public class InfoPantalla extends AppCompatActivity {
         i.putExtra("longi", longitude);
         i.putExtra("lati", latidude);
         i.putExtra("izen", izena);
-        i.putExtra("deskrip", desk);
+        i.putExtra("koka", koka);
+        i.putExtra("helbide", helbide);
         startActivity(i);
     }
 

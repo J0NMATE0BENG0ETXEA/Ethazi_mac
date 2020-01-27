@@ -132,9 +132,9 @@ public class Reserba extends AppCompatActivity {
                 Map<String, String> parametros=new HashMap<String, String>();
                 parametros.put("id_Ostatu", idost);
                 parametros.put("id_Erabiltzaile", idErabiltzaile);
-                parametros.put("PrezioaGuztira", prezioaguzti);
-                parametros.put("Hasiera_data", dataHasiera);
-                parametros.put("Amaiera_data", dataAmaiera);
+                parametros.put("prezioGuztira", prezioaguzti);
+                parametros.put("hasieraData", dataHasiera);
+                parametros.put("amaieraData", dataAmaiera);
                 return parametros;
             }
         };
@@ -142,6 +142,5 @@ public class Reserba extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-
 
 }
