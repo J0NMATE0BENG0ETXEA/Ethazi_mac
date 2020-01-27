@@ -24,7 +24,7 @@
     <string name="txtHasieraData">Sartu hasiera data</string>
     <string name="txtAmaieraData">Sartu amaiera data</string>
     <string name="txtGaukop">Sartu gau kopurua</string>
-    <string name="StringOstatu">Ostatua: </string>
-    <string name="StringUsuario">Erabiltzaile: </string>
-    <string name="StringPrezioa">Prezioa: </string>
+    <string name="errorSartuOndoDatak">Datak ondo sartu</string>
+    <string name="txtReserbaEginda">Reserba egin da</string>
+    <string name="errorTxartologin">Login okerra</string>
 </resources>

@@ -26,6 +26,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -81,6 +82,7 @@ public class Reserba extends AppCompatActivity {
         long milliseconds = gaur.getTime();
         Hasiera.setMinDate(milliseconds);
         Amaiera.setMinDate(milliseconds);
+
         Hasiera.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
@@ -99,19 +101,15 @@ public class Reserba extends AppCompatActivity {
     }
 
     public void datuakGorde(View view){
-        String gaukopuru;
-        if (gaukop.getText().toString().compareTo("") ==0){
-            gaukopuru = valueOf(1);
+        int emaitza = (Integer.parseInt(prezioaguzti)*calcularDias());
+        if (emaitza <= 0){
+            Toast.makeText(Reserba.this, R.string.errorSartuOndoDatak, Toast.LENGTH_SHORT).show();
+        }else{
+            prezioaguzti = String.valueOf(emaitza);
+            insertarDatos("http://192.168.13.26/ethazi_mac/insertar_reserba.php");
+            Toast.makeText(Reserba.this, R.string.txtReserbaEginda, Toast.LENGTH_SHORT).show();
+            finish();
         }
-        else{
-            gaukopuru = gaukop.getText().toString();
-        }
-        int aux = Integer.parseInt(gaukopuru);
-        int emaitza = (Integer.parseInt(prezioaguzti)*aux);
-        prezioaguzti = String.valueOf(emaitza);
-
-        insertarDatos("http://192.168.13.26/ethazi_mac/insertar_reserba.php");
-        finish();
     }
 
     public void insertarDatos(String URL){
@@ -141,6 +139,26 @@ public class Reserba extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+    }
+
+    public int calcularDias(){
+        int emaitza = 0;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                Date fechaInicial=dateFormat.parse(dataHasiera);
+                Date fechaFinal=dateFormat.parse(dataAmaiera);
+                int dias=(int) ((fechaFinal.getTime()-fechaInicial.getTime())/86400000);
+                if (dias == 0){
+                    emaitza = 1;
+                }else{
+                    emaitza = dias;
+                }
+                System.out.println("Hay "+dias+" dias de diferencia");
+            }catch (Exception e){
+
+            }
+
+        return emaitza;
     }
 
 }

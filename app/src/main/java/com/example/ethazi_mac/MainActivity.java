@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
                         validarUsuario(ja);
                         if (jarraitu==true){
                             //Intent
-                            Toast.makeText(MainActivity.this, "Bien login", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(MainActivity.this, "Bien login", Toast.LENGTH_SHORT).show();
                             //SHARED
                             SharedPreferences preferencias=getSharedPreferences("datos",Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor=preferencias.edit();
@@ -209,7 +209,9 @@ public class MainActivity extends AppCompatActivity {
                             pantallaOstatuak();
                         }
                         else {
-                            Toast.makeText(MainActivity.this, "Mal login", Toast.LENGTH_SHORT).show();
+                            txtErabiltzaile.setError("");
+                            txtPasahitza.setError("");
+                            Toast.makeText(MainActivity.this, R.string.errorTxartologin, Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (JSONException e) {
