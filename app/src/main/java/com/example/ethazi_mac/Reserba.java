@@ -74,7 +74,7 @@ public class Reserba extends AppCompatActivity {
         gaukop =(EditText)findViewById(R.id.editTextGaukop);
         btnreserba = (Button)findViewById(R.id.buttonReserbaCalendar);
 
-        info.setText(izena+ "\n" + prezioaguzti + "€\n" + "cod: " + idErabiltzaile + "\n" + erabiltzaile);
+        info.setText(izena+ "\n" + prezioaguzti + "€\n" + "User: " + erabiltzaile);
 
         Date gaur = new Date();
         //Date d = f.parse(string_date);

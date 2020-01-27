@@ -24,4 +24,7 @@
     <string name="txtHasieraData">Sartu hasiera data</string>
     <string name="txtAmaieraData">Sartu amaiera data</string>
     <string name="txtGaukop">Sartu gau kopurua</string>
+    <string name="StringOstatu">Ostatua: </string>
+    <string name="StringUsuario">Erabiltzaile: </string>
+    <string name="StringPrezioa">Prezioa: </string>
 </resources>
