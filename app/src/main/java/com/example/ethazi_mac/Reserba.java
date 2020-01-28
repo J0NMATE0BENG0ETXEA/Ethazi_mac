@@ -41,7 +41,6 @@ public class Reserba extends AppCompatActivity {
     private TextView info;
     private CalendarView Hasiera, Amaiera;
     private Button btnreserba;
-    private EditText gaukop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +71,6 @@ public class Reserba extends AppCompatActivity {
         info=(TextView)findViewById(R.id.textViewInformazioa);
         Hasiera=(CalendarView)findViewById(R.id.calenHasiera);
         Amaiera =(CalendarView)findViewById(R.id.calenAmaiera);
-        gaukop =(EditText)findViewById(R.id.editTextGaukop);
         btnreserba = (Button)findViewById(R.id.buttonReserbaCalendar);
 
         info.setText(izena+ "\n" + prezioaguzti + "€\n" + "User: " + erabiltzaile);
