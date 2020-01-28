@@ -67,6 +67,21 @@ public class mapa extends AppCompatActivity implements
         longitude = (String) bundle.get("longi");
         koka = (String) bundle.get("koka");
         helbide = (String) bundle.get("helbide");
+
+        //CAMARA MAPBOX
+        mapaView.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(MapboxMap mapboxMap) {
+                CameraPosition position = new CameraPosition.Builder()
+                        .target(new LatLng(43.257, -2.92344)) // Cogemos de la BD las coordenadas del alojamiento que se ha escogido
+                        .zoom(55) // Fija el nivel de zoom
+                        .tilt(30) // Fija la inclinación de la cámara
+                        .build();
+                mapboxMap.animateCamera(CameraUpdateFactory
+                        .newCameraPosition(position), 7000);
+            }
+        });
+
     }
 
 
