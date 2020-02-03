@@ -44,7 +44,7 @@ public class ostatuak extends AppCompatActivity {
 
         //LISTVIEW
         listView=(ListView)findViewById(R.id.listview);
-        EnviarRecibirDatos("http://192.168.13.26/ethazi_mac/selectostatuak.php");
+        EnviarRecibirDatos("http://192.168.13.16:82/ethazi_mac/selectostatuak.php");
     }
 
 
@@ -124,16 +124,16 @@ public class ostatuak extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id==R.id.albergues) {
-            EnviarRecibirDatos("http://192.168.13.26/ethazi_mac/selectalberge.php");
+            EnviarRecibirDatos("http://192.168.13.16:82/ethazi_mac/selectalberge.php");
         }
         if (id==R.id.agroturismos) {
-            EnviarRecibirDatos("http://192.168.13.26/ethazi_mac/selectagro.php");
+            EnviarRecibirDatos("http://192.168.13.16:82/ethazi_mac/selectagro.php");
         }
         if (id==R.id.campings) {
-            EnviarRecibirDatos("http://192.168.13.26/ethazi_mac/selectcamping.php");
+            EnviarRecibirDatos("http://192.168.13.16:82/ethazi_mac/selectcamping.php");
         }
         if (id==R.id.casasrurales) {
-            EnviarRecibirDatos("http://192.168.13.26/ethazi_mac/selectcasasru.php");
+            EnviarRecibirDatos("http://192.168.13.16:82/ethazi_mac/selectcasasru.php");
         }
         return super.onOptionsItemSelected(item);
     }

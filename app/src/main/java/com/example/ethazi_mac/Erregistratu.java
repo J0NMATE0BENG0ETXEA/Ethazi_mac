@@ -56,7 +56,6 @@ public class Erregistratu extends AppCompatActivity {
             }
         });
 
-        //kontsultaId("http://192.168.13.26/ethazi_mac/count_usuarios.php");
     }
 
 
@@ -66,7 +65,7 @@ public class Erregistratu extends AppCompatActivity {
             public void onResponse(String response) {
                 if(!response.isEmpty()){
                     //Intent
-                    Toast.makeText(Erregistratu.this, "Bien login", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Erregistratu.this, "Bien login", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     //Toast error login
@@ -120,7 +119,7 @@ public class Erregistratu extends AppCompatActivity {
                     }
                     else{
                         if (pasahitza1.compareTo(pasahitza2) == 0){
-                            insertarDatos("http://192.168.13.26/ethazi_mac/insertar_usuario.php");
+                            insertarDatos("http://192.168.13.16:82/ethazi_mac/insertar_usuario.php");
                             finish();
                         }
                         else {

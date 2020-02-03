@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view){
                 usuario = txtErabiltzaile.getText().toString();
                 //Kontsulta
-                kontsultaErabiltzaileId("http://192.168.13.26/ethazi_mac/id_usuario.php");
-                comprobarUsuario("http://192.168.13.26/ethazi_mac/validar_usuario.php");
+                kontsultaErabiltzaileId("http://192.168.13.16:82/ethazi_mac/id_usuario.php");
+                comprobarUsuario("http://192.168.13.16:82/ethazi_mac/validar_usuario.php");
             }
         });
 
