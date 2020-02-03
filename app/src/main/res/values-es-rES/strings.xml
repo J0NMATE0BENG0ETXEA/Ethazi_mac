@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ethazi_mac</string>
+    <string name="btnErregistratu">Registrarse</string>
+    <string name="btnMapaikusi">Ver mapa</string>
+    <string name="btnReserba">Ver mapa</string>
+    <string name="btnSartu">Entrar</string>
+    <string name="errorDatuakBete">Debe rellenar todos los campos</string>
+    <string name="errorPasahitzakBerdin">Las contraseñas deben ser iguales</string>
+    <string name="errorSartuOndoDatak">Introduzca bien los datos</string>
+    <string name="errorTxartologin">Mal login</string>
+    <string name="txtAgroturismos">Agroturismos</string>
+    <string name="txtAlbergues">Albergues</string>
+    <string name="txtAmaieraData">Ultima fecha</string>
+    <string name="txtCampings">Campings</string>
+    <string name="txtCasasRurales">Casas Rurales</string>
+    <string name="txtErregistratuda">Se ha registrado</string>
+    <string name="txtGaukop" translatable="false">Sartu gau kopurua</string>
+    <string name="txtHasieraData">Primera Fecha</string>
+    <string name="txtKontuaSortuNahi">¿Quieres crear una cuenta?</string>
+    <string name="txtReserbaEginda">Se a hecho la reserva</string>
+    <string name="txtemail">Itroduce email</string>
+    <string name="txterabiltzailesartu">Itroduce usuario</string>
+    <string name="txtizenabizen">Itroduce Nombre y apellido</string>
+    <string name="txtlogKop" translatable="false">Logela kopuru</string>
+    <string name="txtlogina">Login</string>
+    <string name="txtopcional">Opcional</string>
+    <string name="txtostatuakpantalla">Apartamentos</string>
+    <string name="txtsartupasahitza">Itroduce contraseña</string>
+    <string name="txttelefono">Itroduce telefono</string>
+    <string name="user_location_permission_explanation">Usuario</string>
+    <string name="user_location_permission_not_granted">Usuario</string>
+</resources>

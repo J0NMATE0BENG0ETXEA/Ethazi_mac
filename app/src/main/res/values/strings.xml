@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ethazi_mac</string>
+    <string name="app_name" translatable="false">Ethazi_mac</string>
     <string name="txtlogina">Logina</string>
     <string name="btnSartu">Sartu</string>
     <string name="txterabiltzailesartu">Sartu erabiltzaile bat</string>
@@ -9,7 +9,7 @@
     <string name="txtAgroturismos">Agroturismos</string>
     <string name="txtCasasRurales">Casas Rurales</string>
     <string name="txtAlbergues">Albergues</string>
-    <string name="txtlogKop">Logela kopuru</string>
+    <string name="txtlogKop" translatable="false">Logela kopuru</string>
     <string name="btnMapaikusi">Mapan ikusi</string>
     <string name="btnReserba">Reserba egin</string>
     <string name="btnErregistratu">Erregistratu</string>
@@ -23,7 +23,7 @@
     <string name="errorDatuakBete">Datu guztiak bete behar dira</string>
     <string name="txtHasieraData">Sartu hasiera data</string>
     <string name="txtAmaieraData">Sartu amaiera data</string>
-    <string name="txtGaukop">Sartu gau kopurua</string>
+    <string name="txtGaukop" translatable="false">Sartu gau kopurua</string>
     <string name="errorSartuOndoDatak">Datak ondo sartu</string>
     <string name="txtReserbaEginda">Reserba egin da</string>
     <string name="errorTxartologin">Login okerra</string>
