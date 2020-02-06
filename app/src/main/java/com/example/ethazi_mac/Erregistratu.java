@@ -119,7 +119,7 @@ public class Erregistratu extends AppCompatActivity {
                     }
                     else{
                         if (pasahitza1.compareTo(pasahitza2) == 0){
-                            insertarDatos("http://192.168.13.16:82/ethazi_mac/insertar_usuario.php");
+                            insertarDatos("http://172.22.28.130/ethazi_mac/insertar_reserba.php");
                             finish();
                         }
                         else {

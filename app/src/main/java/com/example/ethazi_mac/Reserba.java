@@ -104,7 +104,7 @@ public class Reserba extends AppCompatActivity {
             Toast.makeText(Reserba.this, R.string.errorSartuOndoDatak, Toast.LENGTH_SHORT).show();
         }else{
             prezioaguzti = String.valueOf(emaitza);
-            insertarDatos("http://192.168.13.16:82/ethazi_mac/insertar_reserba.php");
+            insertarDatos("http://172.22.28.130/ethazi_mac/insertar_reserba.php");
             Toast.makeText(Reserba.this, R.string.txtReserbaEginda, Toast.LENGTH_SHORT).show();
             finish();
         }

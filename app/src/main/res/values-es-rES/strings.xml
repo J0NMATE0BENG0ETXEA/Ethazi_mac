@@ -3,7 +3,7 @@
     <string name="app_name">Ethazi_mac</string>
     <string name="btnErregistratu">Registrarse</string>
     <string name="btnMapaikusi">Ver mapa</string>
-    <string name="btnReserba">Ver mapa</string>
+    <string name="btnReserba">Hacer reserva</string>
     <string name="btnSartu">Entrar</string>
     <string name="errorDatuakBete">Debe rellenar todos los campos</string>
     <string name="errorPasahitzakBerdin">Las contraseñas deben ser iguales</string>
